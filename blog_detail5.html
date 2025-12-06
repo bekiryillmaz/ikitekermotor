@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>İki Teker Motor Blog Detay</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/blog_detail.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/cart.js"></script>
+  </head>
+
+<body>
+<section id="top">
+    <div class="container">
+        <div class="row">
+            <div class="top_1 clearfix">
+                <div class="col-sm-3">
+                    <div class="top_1l clearfix">
+                        <p class="mgt small">Mağazamıza Hoş Geldiniz!</p>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="top_1r clearfix">
+                        <ul class="nav navbar-nav nav_1 mgt navbar-right">
+                            <li class="dropdown bord_l">
+                                <a class="font_tag border_none" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Ayarlar<span class="caret"></span></a>
+                                <ul class="dropdown-menu drop_1" role="menu">
+                                    <li><a href="checkout.html">Ödeme</a></li>
+                                    <li><a href="cart.html">Alışveriş Sepeti</a></li>
+                                    <li><a href="liste.html">İstek Listesi</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown bord_l">
+                                <a class="font_tag border_none" href="#" data-toggle="dropdown" role="button" aria-expanded="false">₺ TRY<span class="caret"></span></a>
+                                <ul class="dropdown-menu drop_1" role="menu">
+                                    <li><a href="#">EUR – Euro</a></li>
+                                    <li><a href="#">GBP – İngiliz Sterlini</a></li>
+                                    <li><a href="#">USD – Amerikan Doları</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown bord_l">
+                                <a class="font_tag border_none" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Türkçe<span class="caret"></span></a>
+                                <ul class="dropdown-menu drop_1" role="menu">
+                                    <li><a href="#"><i class="fa fa-flag"></i> Türkçe</a></li>
+                                    <li><a href="#"><i class="fa fa-flag"></i> English</a></li>
+                                    <li><a href="#"><i class="fa fa-flag"></i> Germany</a></li>
+                                </ul>
+                            </li>
+                            <li class="bord_l border_none"><a class="font_tag" href="#"><i class="fa fa-repeat"></i> Karşılaştır (0)</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="header">
+    <div class="container">
+        <div class="row">
+            <div class="header_1 clearfix">
+                <div class="col-sm-3">
+                    <div class="header_1l clearfix">
+                        <h2 class="mgt"><a href="index.html"><i class="fa fa-motorcycle"></i> <span class="col_1">İki Teker</span> Motor</a></h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="header_1m clearfix">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Ürün Ara...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_1r clearfix">
+                    <ul class="nav navbar-nav mgt navbar-right">
+                        <li><a class="tag_m1" href="liste.html" title="İstek Listesi"><i class="fa fa-heart-o"></i></a></li>
+                        <li><a class="tag_m1" href="#" title="Giriş/Kayıt Ol"><i class="fa fa-user"></i></a></li>
+                        <li class="dropdown">
+                            <a class="tag_m1" href="#" data-toggle="dropdown" role="button" aria-expanded="false" title="Sepet"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                            <ul class="dropdown-menu drop_1" role="menu">
+                                <li>
+                                    <div class="drop_1i clearfix">
+                                        <div class="col-sm-6">
+                                            <div class="drop_1il clearfix"><h5 class="mgt"><span id="cartCount">0</span> ÜRÜN</h5></div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="drop_1il text-right clearfix"><h5 class="mgt"><a href="cart.html">SEPETİ GÖR</a></h5></div>
+                                        </div>
+                                    </div>
+                                    <div id="cartPreview">
+                                        </div>
+                                    <div class="drop_1i2 clearfix">
+                                        <div class="col-sm-6">
+                                            <div class="drop_1il clearfix"><h5 class="mgt">TOPLAM</h5></div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="drop_1il text-right clearfix"><h5 class="mgt" id="cartTotal">₺0.00</h5></div>
+                                        </div>
+                                    </div>
+                                    <div class="drop_1i3 text-center clearfix">
+                                        <div class="col-sm-12">
+                                            <h5><a class="button_1 block" href="checkout.html">ÖDEME</a></h5>
+                                            <h5><a class="button block" href="cart.html">SEPETİ GÖR</a></h5>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="menu" class="clearfix cd-secondary-nav">
+    <nav class="navbar nav_t">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Navigasyonu Aç/Kapat</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><i class="fa fa-motorcycle"></i> <span class="col_1">İki Teker</span> Motor</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                <li><a class="m_tag" href="index.html">Ana Sayfa</a></li>
+
+                <li><a class="m_tag" href="product.html">Ürünler</a></li>
+
+                <li><a class="m_tag active_tab" href="blog.html">Blog</a></li>
+
+                <li><a class="m_tag" href="about.html">Hakkımızda</a></li>
+                <li><a class="m_tag" href="services.html">Hizmetler</a></li>
+                <li><a class="m_tag" href="contact.html">İletişim</a></li>
+
+                <li><a class="m_tag" href="cart.html">Sepet</a></li>
+                <li><a class="m_tag" href="checkout.html">Ödeme</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<section id="center" class="clearfix center_shop">
+<div class="container">
+  <div class="row">
+    <div class="center_shop_1 clearfix">
+      <div class="col-sm-6">
+        <div class="center_shop_1l clearfix">
+          <h3 class="mgt">Blog Detayı</h3>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="center_shop_1r text-right clearfix">
+          <h5><a class="col_2" href="index.html">Ana Sayfa</a> / <span>Blog Detayı</span></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="blog">
+  <div class="container">
+    <div class="row">
+      <div class="blog_1 clearfix">
+      <div class="col-sm-4">
+        <div class="blog_1l clearfix">
+          <div class="input-group">
+                      <input type="text" class="form-control form_2" placeholder="Burada Arayın...">
+                      <span class="input-group-btn">
+                          <button class="btn btn-primary" type="button">
+                              <i class="fa fa-search"></i></button>
+                      </span>
+          </div><br>
+          <h4><span class="col_1">|</span> Blog Kategorileri</h4><br>
+          <h5><a href="blog_detail.html">Temel Bakım</a></h5>
+          <h5><a href="blog_detail.html">Motosiklet Aküsü</a></h5>
+          <h5><a href="blog_detail.html">Kendin Yap Rehberleri</a></h5>
+          <h5><a href="blog_detail.html">Ekipman</a></h5>
+          <h5><a href="blog_detail.html">Periyodik Kontroller</a></h5><br>
+          <h4><span class="col_1">|</span> Öne Çıkan Yazılar</h4><br>
+            <div class="product_1li clearfix">
+            <img src="img/blog1.jpg" alt="abc">
+            <h5 class="mgt"><a href="blog_detail1.html">Motosiklet Eldiveni Seçimi ve Korunma İpuçları</a></h5>
+            <h6 class="col_2"><span class="span_1 col_1"><i class="fa fa-calendar"></i></span> Şub 11, 2024 <span class="span_2 col_1"><i class="fa fa-comment-o"></i></span> 25</h6>
+            </div>
+            <div class="product_1li clearfix">
+            <img src="img/blog2.jpg" alt="abc">
+            <h5 class="mgt"><a href="blog_detail2.html">Doğru Kaskı Seçmek</a></h5>
+            <h6 class="col_2"><span class="span_1 col_1"><i class="fa fa-calendar"></i></span> Tem 10, 2024 <span class="span_2 col_1"><i class="fa fa-comment-o"></i></span> 45</h6>
+            </div>
+            <div class="product_1li border_none pdb clearfix">
+            <img src="img/blog3.jpg" alt="abc">
+            <h5 class="mgt"><a href="blog_detail3.html">Kış Sürüşü İpuçları</a></h5>
+            <h6 class="col_2"><span class="span_1 col_1"><i class="fa fa-calendar"></i></span> Oca 17, 2024 <span class="span_2 col_1"><i class="fa fa-comment-o"></i></span> 23</h6>
+            </div><br>
+            <h4><span class="col_1">|</span> Etiketler</h4><br>
+            <ul>
+            <li><a href="blog_detail.html">Bakım</a></li>
+            <li><a href="blog_detail.html">Akü</a></li>
+            <li><a href="blog_detail.html">Değişim</a></li>
+            <li><a href="blog_detail.html">DIY</a></li>
+            <li><a href="blog_detail.html">Enerji</a></li>
+            <li><a href="blog_detail.html">Tamir</a></li>
+            <li><a href="blog_detail.html">Kış</a></li>
+            </ul>
+            <h4><span class="col_1">|</span> E-Bülten</h4><br>
+            <div class="blog_1li clearfix">
+              <h5 class="bold mgt">Abone Olun ve En Son Haberleri Alın.</h5><br>
+            <input class="form-control" placeholder="E-posta adresinizi girin" type="text">
+            <h5><a class="button" href="blog_detail.html">GÖNDER</a></h5>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="blod_d1 clearfix">
+          <img src="img/blog5.jpg" class="iw" alt="abc">
+          <h3>Temel Bakım İpuçları: Motosiklet Aküsü Nasıl Değiştirilir ve Bakımı Yapılır?</h3>
+          <h6 class="col_2"><a class="col_2" href="#"><i class="fa fa-user col_1"></i> Yazan: Yönetici</a> | <a class="col_2" href="#"><i class="fa fa-calendar col_1"></i> Kas 24, 2024</a> | <a class="col_2" href="#"><i class="fa fa-comments col_1"></i> Yorum (15)</a></h6>
+          <hr>
+          <p>Temel Bakım İpuçları: Motosikletinizin sorunsuz çalışması için akü bakımı kritik öneme sahiptir. Özellikle kış aylarında veya uzun süre kullanılmadığında akü, motosikletin en hassas parçalarından biridir. Akü ömrünü uzatmak için düzenli kontrol, temizlik ve doğru şarj yöntemlerini bilmek gerekir. Akü kutup başlarını temiz tutmak ve bağlantıların gevşek olmamasını sağlamak, en temel bakım adımlarıdır.</p><br>
+            <blockquote>
+            <p class="mgt">"Motosiklet aküsü, kalbinin atışı gibidir; ona iyi bakarsanız, o da sizi yolda bırakmaz. Doğru bakım ve zamanında değişim, sadece sorunsuz bir başlangıç değil, aynı zamanda güvenli bir sürüş demektir."</p>
+            </blockquote>
+            <p>Motosiklet Aküsü Nasıl Değiştirilir ve Bakımı Yapılır? Akü değişimi sırasında öncelikle **negatif (-) kutup başını**, ardından **pozitif (+) kutup başını** sökmeye dikkat edin. Yeni aküyü takarken ise sırasıyla **pozitif (+)**, sonra **negatif (-)** kutup başlarını bağlayın. Bu sıra, kısa devreyi önlemek için hayati önem taşır. Eğer motosikletinizi uzun süre kullanmayacaksanız, aküyü sökün veya bir damla şarj cihazı (tender/maintainer) ile şarjda tutun.</p>
+            <p>Bakım sırasında akü voltajını ölçerek durumunu kontrol edin. Voltaj $12.6V$'ın altındaysa aküyü şarj etmeniz gerekir. Akünüz eski, şişmiş veya voltajı şarj tutmuyorsa, güvenliğiniz için hemen yeni bir akü ile değiştirin.</p>
+            <ul>
+             <li class="bold">Etiketler:</li>
+             <li><a href="#">Bakım</a></li>
+             <li><a href="#">Akü</a></li>
+             <li><a href="#">Değişim</a></li>
+             <li><a href="#">DIY</a></li>
+            </ul>
+        </div>  <br>
+        <div class="blod_d2 clearfix"> 
+          <h3><span class="col_1">|</span> Yorumlar (3)</h3>
+          <div class="blod_d2i clearfix">
+            <div class="col-sm-2 space_left">
+             <img src="img/42.jpg" class="iw img-circle" alt="abc">
+            </div>
+            <div class="col-sm-10">
+             <h4 class="mgt">Ahmet Can</h4>
+             <h6 class="mgt">18 Mayıs 2024, Saat 20:59</h6>
+             <p>Akü sökme ve takma sırasını karıştırıyordum, pozitif/negatif kuralı çok faydalı oldu, teşekkürler.</p>
+             <h5><a href="#"><i class="fa fa-reply"></i> Yanıtla</a></h5>
+            </div>
+          </div>
+          <div class="blod_d2i mgl clearfix">
+            <div class="col-sm-2 space_left">
+             <img src="img/43.jpg" class="iw img-circle" alt="abc">
+            </div>
+            <div class="col-sm-10">
+             <h4 class="mgt">Zeynep İlhan</h4>
+             <h6 class="mgt">18 Mayıs 2024, Saat 20:59</h6>
+             <p>Damla şarj cihazı kışın aküyü sökmemizden daha mı pratik olur? Deneyimi olan var mı?</p>
+             <h5><a href="#"><i class="fa fa-reply"></i> Yanıtla</a></h5>
+            </div>
+          </div>
+          <div class="blod_d2i clearfix">
+            <div class="col-sm-2 space_left">
+             <img src="img/44.jpg" class="iw img-circle" alt="abc">
+            </div>
+            <div class="col-sm-10">
+             <h4 class="mgt">Haluk Erdem</h4>
+             <h6 class="mgt">18 Mayıs 2024, Saat 20:59</h6>
+             <p>Akü kutup başlarını temizlerken hangi solüsyonu kullanmamızı tavsiye edersiniz?</p>
+             <h5><a href="#"><i class="fa fa-reply"></i> Yanıtla</a></h5>
+            </div>
+          </div>
+        </div><br>
+        <div class="blod_d2 clearfix"> 
+          <h3><span class="col_1">|</span> Yorum Bırakın</h3>
+        </div>
+        <div class="blod_d3 clearfix"> 
+          <div class="blod_d3i clearfix">
+            <div class="col-sm-6">
+             <h5>Adınız <span>*</span></h5>
+             <input class="form-control" placeholder="Adınız" type="text">
+            </div>
+            <div class="col-sm-6">
+             <h5>E-posta Adresiniz <span>*</span></h5>
+             <input class="form-control" placeholder="E-posta Adresiniz" type="text">
+            </div>
+          </div>
+          <div class="blod_d3i clearfix">
+            <div class="col-sm-12">
+             <h5>Mesajınız <span>*</span></h5>
+             <textarea class="form-control form_1" placeholder="Yorumunuzu buraya yazın"></textarea>
+             <h5><a class="button" href="#">YORUMU GÖNDER</a></h5>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div> 
+</section>
+
+<section id="footer" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="footer_1 clearfix">
+                <div class="col-sm-3">
+                    <div class="footer_1l clearfix">
+                        <h2 class="mgt"><a href="#"><span class="col_1">İki Teker</span> Motor</a></h2>
+                        <p>Biz, motosiklet tutkusunu ve güvenliği birleştiren, sadece en yüksek kalitedeki ekipmanları seçip sunan bir ekibiz. Sürücülerin yolda maksimum koruma ve konforla ilerlemesi için çalışıyoruz.</p>
+                        <div class="footer_1li cleafix">
+                            <span class="col_1"><i class="fa fa-headphones"></i></span>
+                            <h5>Müşteri Hizmetleri</h5>
+                            <h4><a href="contact.html">(00) 123 456 789</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="footer_1m clearfix">
+                        <h4>Güncel Bilgiler İçin Bizi Sosyal Medyada Takip Edin</h4><br>
+                        <div class="header_1m clearfix">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="E-posta adresinizle bültenimize abone olun">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">Abone Ol</button>
+                                </span>
+                            </div>
+                        </div>
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="footer_1r clearfix">
+                        <h4>Bilgi</h4>
+                        <ul>
+                            <li><a href="about.html">Teslimat Bilgileri <span class="pull-right">Yasal Uyarı</span></a></li>
+                            <li><a href="about.html">Hakkımızda<span class="pull-right">Güvenli Ödeme</span></a></li>
+                            <li><a href="contact.html">Bize Ulaşın <span class="pull-right">Fiziki Mağaza</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_2 text-center clearfix">
+                <div class="col-sm-12">
+                    <p class="mgt">© 2013 İki Teker Motor. Tüm Hakları Saklıdır | Tarafından Tasarlandı <a class="col_1" href="#">Ebubekir Yılmaz</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</section>
+<script>
+$(document).ready(function(){
+    var secondaryNav = $('.cd-secondary-nav'),
+        secondaryNavTopPosition = secondaryNav.offset().top;
+         $(window).on('scroll', function(){
+            if($(window).scrollTop() > secondaryNavTopPosition ) {
+                secondaryNav.addClass('is-fixed'); 
+            } else {
+                secondaryNav.removeClass('is-fixed');
+            }
+        }); 
+
+});
+</script>
+
+</body>
+
+</html>

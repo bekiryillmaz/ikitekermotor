@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>İki Teker Motor</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/cart.js"></script>
+    <style>
+        .order-table th, .order-table td {
+            text-align: left;
+            vertical-align: middle !important;
+            font-size: 16px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: .3em .6em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25rem;
+            color: #fff;
+        }
+        .status-beklemede {
+            background-color: #f0ad4e;
+        }
+        .status-onaylandı {
+            background-color: #5cb85c;
+        }
+        .status-iptal-edildi {
+            background-color: #d9534f !important; 
+            color: #ffffff !important;
+}
+        @media screen and (max-width: 767px) {
+            .order-table, .order-table thead, .order-table tbody, .order-table th, .order-table td, .order-table tr { 
+                display: block; 
+            }
+            .order-table thead tr { 
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            .order-table tr { border: 1px solid #ccc; margin-bottom: 5px; }
+            .order-table td { 
+                border: none;
+                border-bottom: 1px solid #eee; 
+                position: relative;
+                padding-left: 50% !important;
+                text-align: right;
+            }
+            .order-table td:before { 
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 45%; 
+                padding-right: 10px; 
+                white-space: nowrap;
+                content: attr(data-label);
+                font-weight: bold;
+                text-align: left;
+            }
+        }
+        
+        #admin-dashboard, #admin-products, #admin-orders, #admin-content {
+            background-color: #f8f8f8;
+            min-height: 100vh;
+        }
+        .admin-stats .stat-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .admin-menu-list {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .admin-btn {
+            padding: 10px 20px !important;
+            font-size: 16px !important;
+            border-radius: 4px !important;
+            color: #ffffff !important;
+        }
+    </style>
+  </head>
+  
+<body>
+
+    <section id="top">
+    <div class="container">
+        <div class="row">
+            <div class="top_1 clearfix">
+                <div class="col-sm-3">
+                    <div class="top_1l clearfix">
+                        <p class="mgt small">Mağazamıza Hoş Geldiniz!</p>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="top_1r clearfix">
+                        <ul class="nav navbar-nav nav_1 mgt navbar-right">
+                            <li class="dropdown bord_l">
+                                <a class="font_tag border_none" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Ayarlar<span class="caret"></span></a>
+                                <ul class="dropdown-menu drop_1" role="menu">
+                                    <li><a href="checkout.html">Ödeme</a></li>
+                                    <li><a href="cart.html">Alışveriş Sepeti</a></li>
+                                    <li><a href="liste.html">İstek Listesi</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown bord_l">
+                                <a class="font_tag border_none" href="#" data-toggle="dropdown" role="button" aria-expanded="false">₺ TRY<span class="caret"></span></a>
+                                <ul class="dropdown-menu drop_1" role="menu">
+                                    <li><a href="#">EUR – Euro</a></li>
+                                    <li><a href="#">GBP – İngiliz Sterlini</a></li>
+                                    <li><a href="#">USD – Amerikan Doları</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown bord_l">
+                                <a class="font_tag border_none" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Türkçe<span class="caret"></span></a>
+                                <ul class="dropdown-menu drop_1" role="menu">
+                                    <li><a href="#"><i class="fa fa-flag"></i> Türkçe</a></li>
+                                    <li><a href="#"><i class="fa fa-flag"></i> English</a></li>
+                                    <li><a href="#"><i class="fa fa-flag"></i> Germany</a></li>
+                                </ul>
+                            </li>
+                            <li class="bord_l border_none"><a class="font_tag" href="#"><i class="fa fa-repeat"></i> Karşılaştır (0)</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="header">
+ <div class="container">
+  <div class="row">
+   <div class="header_1 clearfix">
+    <div class="col-sm-3">
+     <div class="header_1l clearfix">
+      <h2 class="mgt"><a href="index.html"><i class="fa fa-motorcycle"></i> <span class="col_1">İki Teker</span> Motor</a></h2>
+     </div>
+    </div>
+    <div class="col-sm-6">
+     <div class="header_1m clearfix">
+      <div class="input-group">
+<input type="text" class="form-control" placeholder="Hangi Ekipmanı İstiyorsunuz?">    
+            <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">
+							<i class="fa fa-search"></i></button>
+                </span>
+              </div>
+     </div>
+    </div>
+    <div class="header_1r clearfix">
+      <ul class="nav navbar-nav mgt navbar-right">
+          <li><a class="tag_m1" href="liste.html"><i class="fa fa-heart-o"></i></a></li>
+          <li data-toggle="modal" data-target="#loginModal">
+              <a class="tag_m1" href="#" title="Giriş/Kayıt Ol"><i class="fa fa-user"></i></a>
+          </li>
+          <li class="dropdown">
+              <a class="tag_m1" href="#" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+              <ul class="dropdown-menu drop_1" role="menu">
+                <li>
+                      <div class="drop_1i clearfix">
+                          <div class="col-sm-6">
+                              <div class="drop_1il clearfix"><h5 class="mgt"><span id="cartCount">0</span> ÜRÜN</h5></div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="drop_1il text-right clearfix"><h5 class="mgt"><a href="cart.html">SEPETİ GÖR</a></h5></div>
+                          </div>
+                      </div>
+                      <div id="cartPreview">
+                      </div>
+                      <div class="drop_1i2 clearfix">
+                          <div class="col-sm-6">
+                              <div class="drop_1il clearfix"><h5 class="mgt">TOPLAM</h5></div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="drop_1il text-right clearfix"><h5 class="mgt" id="cartTotal">₺0.00</h5></div>
+                          </div>
+                      </div>
+                      <div class="drop_1i3 text-center clearfix">
+                          <div class="col-sm-12">
+                              <h5><a class="button_1 block" href="checkout.html">ÖDEME</a></h5>
+                              <h5><a class="button block" href="cart.html">SEPETİ GÖR</a></h5>
+                          </div>
+                      </div>
+                </li>
+              </ul>
+          </li>
+      </ul>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="menu" class="clearfix cd-secondary-nav">
+    <nav class="navbar nav_t">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Navigasyonu Aç/Kapat</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><i class="fa fa-motorcycle"></i> <span class="col_1">İki Teker</span> Motor</a>
+            </div>
+            
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                
+                <li><a class="m_tag active_tab" href="index.html">Ana Sayfa</a></li>
+                
+                <li><a class="m_tag" href="product.html">Ürünler</a></li>
+                
+                <li><a class="m_tag" href="blog.html">Blog</a></li>
+                
+                <li><a class="m_tag" href="about.html">Hakkımızda</a></li>
+                <li><a class="m_tag" href="services.html">Hizmetler</a></li>
+                <li><a class="m_tag" href="contact.html">İletişim</a></li>
+                
+                <li><a class="m_tag" href="cart.html">Sepet</a></li>
+                <li><a class="m_tag" href="checkout.html">Ödeme</a></li>
+                
+                
+                
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+    
+<section id="center" class="clearfix center_home">
+<div class="container">
+ <div class="row">
+  <div class="center_home_1 clearfix">
+   <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel" >
+            <div class="carousel-inner">
+                <div class="item active">
+                 <div class="col-sm-6">
+                  <div class="center_home_l clearfix">
+                   <h4 class="mgt">Fu Fırsat Kaçmaz!</h4>
+                   <h1>LAgv Pista GP RR Carbon Kapalı Kask </h1>
+                   <hr>
+                   <p>Yarış pistlerinin efsanevi mirasını taşıyan AGV Pista GP RR, profesyonel sürücüler için tasarlanmış nihai performans kaskıdır. Bu kask, MotoGP pilotlarının kullandığı modelin birebir replikasıdır ve yolda veya pistte maksimum koruma, hafiflik ve aerodinamik üstünlük arayanlar için üretilmiştir.</p>
+                   <h5 class="normal"><a class="button" href="pistaagvkask_detail.html">Şimdi Al</a></h5>
+                  </div>
+                 </div> 	 
+                 <div class="col-sm-6">
+                  <div class="center_home_r clearfix">
+                   <img src="img/kask.jpeg" class="iw" alt="abc">
+                  </div>
+                 </div> 	 		 
+                </div>
+                <div class="item">
+                 <div class="col-sm-6">
+                  <div class="center_home_l clearfix">
+                   <h4 class="mgt">Fu Fırsat Kaçmaz!</h4>
+                   <h1>Alphine Stars Ceket</h1>
+                   <hr>
+                   <p>Motorcu ruhunuzu yansıtacak, sizi yollarda güvenle saracak ve her an maksimum performans sunacak bir ceket mi arıyorsunuz? Alpinestars, yarış pistlerinden ilham alan teknolojisi ve eşsiz İtalyan tasarımıyla aradığınızdan çok daha fazlasını sunuyor.</p>
+                   <h5 class="normal"><a class="button" href="alphinestaryazlıkmont_detail.html">Şimdi Al</a></h5>
+                  </div>
+                 </div> 	 
+                 <div class="col-sm-6">
+                  <div class="center_home_r clearfix">
+                   <img src="img/alphine_ceket.jpg" class="iw" alt="abc">
+                  </div>
+                 </div> 	 		 
+                </div>
+                <div class="item">
+                 <div class="col-sm-6">
+                  <div class="center_home_l clearfix">
+                   <h4 class="mgt">Fu Fırsat Kaçmaz!</h4>
+                   <h1>İnsta360 Kamera</h1>
+                   <hr>
+                   <p>Yolculuklarınızı sadece kaydetmeyin, Insta360'ın 360 derece gücüyle her anını yeniden yaşatın! "Görünmez Selfie Çubuğu" sayesinde, sanki sizi bir drone takip ediyormuş gibi imkansız açılar yakalayın. İster viraj alsın ister hızlanın, FlowState Stabilizasyonu ile videolarınız hep akıcı ve titreşimsiz kalır. Önce çekin, sonra telefondan istediğiniz açıyı çerçeveleyin. Motorunuzun ve yolun tüm ihtişamını tek bir karede yakalamanın en kolay yolu bu! Macera Başlasın!</p>
+                   <h5 class="normal"><a class="button" href="insta360kamera_detail.html">Şimdi Al</a></h5>
+                  </div>
+                 </div> 	 
+                 <div class="col-sm-6">
+                  <div class="center_home_r clearfix">
+                   <img src="img/insta360.jpg" class="iw" alt="abc">
+                  </div>
+                 </div> 	 		 
+                </div>
+            </div>
+        </div>
+  <div class="sell_1 clearfix">
+            
+            <div class="col-sm-12">
+                <div class="controls text-center">
+                    <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example" data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-success" href="#carousel-example" data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+  </div>
+ </div>
+</div>
+</section>
+
+<section id="Categ">
+    <div class="container">
+        <div class="row">
+            <div class="Categ_1 clearfix">
+                <div class="col-sm-12">
+                    <h3 class="mgt">POPÜLER KATEGORİLER</h3>
+                    <hr>
+                </div>
+            </div>
+            <div class="Categ_2 clearfix">
+                <div class="col-sm-3">
+                    <div class="Categ_2i clearfix">
+                        <a href="eldivenler.html"><img src="img/shimaeldiven.jpg" alt="Eldivenler"></a>
+                        <h4 class="mgt"><a href="eldivenler.html">Eldivenler</a></h4>
+                        <h6>(4 Ürün)</h6>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="Categ_2i clearfix">
+                        <a href="kasklar.html"><img src="img/pista.jpg" alt="Kasklar"></a>
+                        <h4 class="mgt"><a href="kasklar.html">Kasklar</a></h4>
+                        <h6>(3 Ürün)</h6>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="Categ_2i clearfix">
+                        <a href="montlar.html"><img src="img/alphine_ceket.jpg" alt="Montlar"></a>
+                        <h4 class="mgt"><a href="montlar.html">Montlar</a></h4>
+                        <h6>(2 Ürün)</h6>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="Categ_2i clearfix">
+                        <a href="botlar.html"><img src="img/bot.jpg" alt="Botlar"></a>
+                        <h4 class="mgt"><a href="botlar.html">Botlar</a></h4>
+                        <h6>(3 Ürün)</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="collection">
+ <div class="container">
+  <div class="row">
+   <div class="collect_1 clearfix">
+    <div class="col-sm-4">
+      <div class="collect_1l clearfix">
+      <div class="col-sm-5 space_all">
+        <div class="collect_1ll clearfix">
+        <h4 class="mgt col_2">Shima Eldiven</h4>
+        <h3>12% İndirim</h3>
+        <h6><a class="button mgt" href="shimaeldiven_detail.html"> Şimdi Al</a></h6>
+        </div>
+      </div>
+      <div class="col-sm-7 space_right">
+        <div class="collect_1lr clearfix">
+        <a href="#"><img src="img/shimaeldiven.jpg" alt="abc" class="iw"></a>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="collect_1l clearfix">
+      <div class="col-sm-5 space_all">
+        <div class="collect_1ll clearfix">
+        <h4 class="mgt col_2">MT Thunder Kask</h4>
+        <h3>20% İndirim</h3>
+        <h6><a class="button mgt" href="mtkask_detail.html"> Şimdi Al</a></h6>
+        </div>
+      </div>
+      <div class="col-sm-7 space_right">
+        <div class="collect_1lr clearfix">
+        <a href="#"><img src="img/mtkask.jpg" alt="abc" class="iw"></a>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="collect_1l clearfix">
+      <div class="col-sm-5 space_all">
+        <div class="collect_1ll clearfix">
+        <h4 class="mgt col_2">Disk Kilidi</h4>
+        <h3>20% İndirim</h3>
+        <h6><a class="button mgt" href="diskkilidi_detail.html"> Şimdi Al</a></h6>
+        </div>
+      </div>
+      <div class="col-sm-7 space_right">
+        <div class="collect_1lr clearfix">
+        <a href="#"><img src="img/diskkilidi.jpg" alt="abc" class="iw"></a>
+        </div>
+      </div>
+      </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="sell">
+ <div class="container">
+  <div class="row">
+      <div class="sell_1_o clearfix">
+            <div class="col-sm-5 space_left sell_1_ol">
+               <h2 class="mgt">Yeni Gelenler</h2>
+               <hr>
+            </div>
+            <div class="col-sm-7 space_left">
+               <div class="clearfix sell_1_or text-right">
+                <ul class="nav_1_tab">
+      </ul>
+               </div>
+            </div>
+        </div>
+      <div class="tab-content clearfix">
+        <div id="home" class="tab-pane fade  clearfix active in">
+             <div class="click clearfix">
+                   <div class="sell_o_1 clearfix">
+                         <div class="col-sm-3 space_left">
+                            <div class="arriv_2m clearfix">
+                              <div class="arriv_2m1 clearfix">
+                                <a href="yağ_detail.html"><img src="img/yağ.jpg" alt="abc" class="iw"></a>
+                              </div>
+                              <div class="arriv_2m2 clearfix">
+                               <h5 class="text-center mgt">New</h5>
+                              </div>
+                              <div class="arriv_2m2n clearfix">
+                               <h5 class="text-center mgt">Sat</h5>
+                              </div>
+                              <div class="arriv_2m3 clearfix">
+                               <h4 class="bold mgt">LIQUI MOLY 10W40 Motor Yağı</h4>
+                               <p><a href="yağ_detail.html">Kısmi Sentetik MoS2'li LEICHTLAUF 5 Litre (2184)</a></p>
+                               <span class="span_1">
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                </span>
+                               <h3 class="normal">
+                               <span class="span_2">1482 ₺</span>
+                               <span class="span_3 col_1"> 1158 ₺</span> 
+                               </h3>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 space_left">
+                            <div class="arriv_2m clearfix">
+                              <div class="arriv_2m1 clearfix">
+                                <a href="branda_detail.html"><img src="img/branda.jpg" alt="abc" class="iw"></a>
+                              </div>
+                              <div class="arriv_2m2 clearfix">
+                               <h5 class="text-center mgt">New</h5>
+                              </div>
+                              <div class="arriv_2m2n clearfix">
+                               <h5 class="text-center mgt">Sale</h5>
+                              </div>
+                              <div class="arriv_2m3 clearfix">
+                               <h4 class="bold mgt">Otokuzey Motosiklet Brandası</h4>
+                               <p><a href="branda_detail.html">Motorsiklet Branda Mifolonlu Taşıma Torbalı L Beden</a></p>
+                               <span class="span_1">
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                </span>
+                               <h3 class="normal">
+                               <span class="span_2">500 ₺</span>
+                               <span class="span_3 col_1"> 432 ₺</span> 
+                               </h3>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 space_left">
+                            <div class="arriv_2m clearfix">
+                              <div class="arriv_2m1 clearfix">
+                                <a href="ls2kask_detail.html"><img src="img/ls2kask.jpg" alt="abc" class="iw"></a>
+                              </div>
+                              <div class="arriv_2m2 clearfix">
+                               <h5 class="text-center mgt">New</h5>
+                              </div>
+                              <div class="arriv_2m2n clearfix">
+                               <h5 class="text-center mgt">Sale</h5>
+                              </div>
+                              <div class="arriv_2m3 clearfix">
+                               <h4 class="bold mgt">LS2 Kask</h4>
+                               <p><a href="ls2kask_detail.html">LS2 Rapid 2 Mat Siyah Gökkuşağı Vizörlü Kask</a></p>
+                               <span class="span_1">
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                </span>
+                               <h3 class="normal">
+                               <span class="span_2"> 4.812 ₺</span>
+                               <span class="span_3 col_1"> 3.959 ₺</span> 
+                               </h3>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 space_left">
+                            <div class="arriv_2m clearfix">
+                              <div class="arriv_2m1 clearfix">
+                                <a href="file_detail.html"><img src="img/file.jpg" alt="abc" class="iw"></a>
+                              </div>
+                              <div class="arriv_2m2 clearfix">
+                               <h5 class="text-center mgt">New</h5>
+                              </div>
+                              <div class="arriv_2m2n clearfix">
+                               <h5 class="text-center mgt">Sale</h5>
+                              </div>
+                              <div class="arriv_2m3 clearfix">
+                               <h4 class="bold mgt">MONERO FİLE</h4>
+                               <p><a href="file_detail.html">Monero Motosiklet Kask Filesi</a></p>
+                               <span class="span_1">
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                </span>
+                               <h3 class="normal">
+                               <span class="span_2">312 ₺</span>
+                               <span class="span_3 col_1"> 250 ₺</span> 
+                               </h3>
+                              </div>
+                            </div>
+                        </div>
+                </div>
+                 </div>
+   
+    </div>
+     </div>
+  </div> 
+ </div>
+</section>
+
+<section class="brands-slider-section">
+    <h2>İş Birlikleri Yaptığımız Markalar</h2>
+    <div class="brands-slider-container">
+        <div class="brands-slider">
+            <img src="img/logo1.jpg" alt="Marka 1 Logo">
+            <img src="img/logo2.jpg" alt="Marka 2 Logo">
+            <img src="img/logo3.jpg" alt="Marka 3 Logo">
+            <img src="img/logo4.jpg" alt="Marka 4 Logo">
+            <img src="img/logo5.jpg" alt="Marka 5 Logo">
+            <img src="img/logo1.jpg" alt="Marka 1 Logo">
+            <img src="img/logo2.jpg" alt="Marka 2 Logo">
+            <img src="img/logo3.jpg" alt="Marka 3 Logo">
+            <img src="img/logo4.jpg" alt="Marka 4 Logo">
+            <img src="img/logo5.jpg" alt="Marka 5 Logo">
+            
+            </div>
+    </div>
+</section>
+
+
+
+
+
+<section id="connect" class="clearfix">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12 space_all">
+    <div class="connect_1 clearfix">
+	 <div class="col-sm-3 connect_1m">
+	  <div class="connect_1l clearfix">
+	    <span><i class="fa fa-truck"></i></span>
+	  </div>
+	  <div class="connect_1r clearfix">
+	   <h4>Ücretsiz Kargo</h4>
+	   <p>Dünyanın her yerine ücretiz kargo</p>
+	  </div>
+	 </div>
+	 <div class="col-sm-3 connect_1m">
+	  <div class="connect_1l clearfix">
+	    <span><i class="fa fa-headphones"></i></span>
+	  </div>
+	  <div class="connect_1r clearfix">
+	   <h4>7/24 Destek</h4>
+	   <p>7/24 Canlı destek hattı</p>
+	  </div>
+	 </div>
+	 <div class="col-sm-3 connect_1m">
+	  <div class="connect_1l clearfix">
+	    <span><i class="fa fa-credit-card"></i></span>
+	  </div>
+	  <div class="connect_1r clearfix">
+	   <h4>Güvenli Ödeme</h4>
+	   <p>100% Güvenli ödeme</p>
+	  </div>
+	 </div>
+	 <div class="col-sm-3 connect_1m border_none">
+	  <div class="connect_1l clearfix">
+	    <span><i class="fa fa-shopping-cart"></i></span>
+	  </div>
+	  <div class="connect_1r clearfix">
+	   <h4>Kolay İade</h4>
+	   <p>Basit iade politikası</p>
+	  </div>
+	 </div>
+	</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="footer" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="footer_1 clearfix">
+                <div class="col-sm-3">
+                    <div class="footer_1l clearfix">
+                        <h2 class="mgt"><a href="#"><span class="col_1">İki Teker</span> Motor</a></h2>
+                        <p>Biz, motosiklet tutkusunu ve güvenliği birleştiren, sadece en yüksek kalitedeki ekipmanları seçip sunan bir ekibiz. Sürücülerin yolda maksimum koruma ve konforla ilerlemesi için çalışıyoruz.</p>
+                        <div class="footer_1li cleafix">
+                            <span class="col_1"><i class="fa fa-headphones"></i></span>
+                            <h5>Müşteri Hizmetleri</h5>
+                            <h4><a href="contact.html">(00) 123 456 789</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="footer_1m clearfix">
+                        <h4>Güncel Bilgiler İçin Bizi Sosyal Medyada Takip Edin</h4><br>
+                        <div class="header_1m clearfix">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="E-posta adresinizle bültenimize abone olun">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">Abone Ol</button>
+                                </span>
+                            </div>
+                        </div>
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="footer_1r clearfix">
+                        <h4>Bilgi</h4>
+                        <ul>
+                            <li><a href="about.html">Teslimat Bilgileri <span class="pull-right">Yasal Uyarı</span></a></li>
+                            <li><a href="about.html">Hakkımızda<span class="pull-right">Güvenli Ödeme</span></a></li>
+                            <li><a href="contact.html">Bize Ulaşın <span class="pull-right">Fiziki Mağaza</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_2 text-center clearfix">
+                <div class="col-sm-12">
+                    <p class="mgt">© 2013 İki Teker Motor. Tüm Hakları Saklıdır | Tarafından Tasarlandı <a class="col_1" href="#">Ebubekir Yılmaz</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title mgt" id="loginModalLabel">Giriş Yap / Admin Paneli</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="usernameInput">Kullanıcı Adı:</label>
+            <input type="text" class="form-control" id="usernameInput" required>
+          </div>
+          <div class="form-group">
+            <label for="passwordInput">Şifre:</label>
+            <input type="password" class="form-control" id="passwordInput" required>
+          </div>
+          <div id="loginMessage" class="alert alert-danger" style="display:none; margin-top: 15px;"></div>
+          <button type="submit" class="button_1 block" style="margin-top: 20px;">Giriş Yap</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="adminPanel" style="display: none;">
+    </div>
+
+<script>
+
+let DUMMY_ORDERS = [
+    { id: '1001', product: 'LS2 Kask', quantity: 1, total: '3.959,00 ₺', customer: 'Caner Özkök', status: 'Beklemede', date: '04.12.2025' },
+    { id: '1002', product: 'LIQUI MOLY Yağ', quantity: 2, total: '2.316,00 ₺', customer: 'Ayşe Yılmaz', status: 'Beklemede', date: '04.12.2025' },
+    { id: '1003', product: 'Shima Eldiven', quantity: 1, total: '985,00 ₺', customer: 'Deniz Kaya', status: 'Beklemede', date: '03.12.2025' }
+];
+
+const DEMO_PRODUCTS = [
+    { id: 1, name: 'LIQUI MOLY 10W40 Motor Yağı', price: '1158 ₺', image: 'img/yağ.jpg' },
+    { id: 2, name: 'Otokuzey Motosiklet Brandası', price: '432 ₺', image: 'img/branda.jpg' },
+    { id: 3, name: 'LS2 Rapid Kask', price: '3.959 ₺', image: 'img/ls2kask.jpg' }
+];
+
+
+function approveOrder(orderId) {
+    const orderIndex = DUMMY_ORDERS.findIndex(order => order.id === orderId);
+    if (orderIndex !== -1 && DUMMY_ORDERS[orderIndex].status === 'Beklemede') {
+        
+        DUMMY_ORDERS[orderIndex].status = 'Onaylandı';
+        
+        alert(`Sipariş #${orderId} başarıyla onaylandı.`);
+        
+        loadOrdersPanel();
+    }
+}
+
+function cancelOrder(orderId) {
+    const orderIndex = DUMMY_ORDERS.findIndex(order => order.id === orderId);
+    if (orderIndex !== -1 && DUMMY_ORDERS[orderIndex].status === 'Beklemede') {
+        DUMMY_ORDERS[orderIndex].status = 'İptal Edildi';
+        alert(`Sipariş #${orderId} iptal edildi.`);
+        loadOrdersPanel();
+    }
+}
+
+function getAdminPanelHtml() {
+    const pendingCount = DUMMY_ORDERS.filter(o => o.status === 'Beklemede').length;
+    
+    return `
+        <section id="admin-dashboard" class="container" style="padding: 60px 0;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="mgt" style="color: #ea1c26;"><i class="fa fa-tachometer"></i> Admin Kontrol Paneli</h2>
+                    <hr style="border-color: #ea1c26;">
+                </div>
+            </div>
+            <div class="row admin-stats">
+                <div class="col-sm-4">
+                    <div class="stat-card">
+                        <h4>Toplam Ürün</h4>
+                        <h1 id="totalProducts">452</h1>
+                        <p>Mağazadaki aktif ürün sayısı</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="stat-card">
+                        <h4>Bekleyen Sipariş</h4>
+                        <h1 id="pendingOrders">${pendingCount}</h1>
+                        <p>Gönderilmeyi bekleyen siparişler</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="stat-card">
+                        <h4>Blog Yazıları</h4>
+                        <h1 id="totalBlogs">7</h1>
+                        <p>Yayınlanmış aktif blog içeriği</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 style="margin-top: 40px;">İçerik Yönetim Sistemi (CMS)</h3>
+                    <div class="admin-menu-list">
+                        
+                        <a href="#" class="btn btn-danger admin-btn" onclick="loadProductsPanel(); return false;"><i class="fa fa-shopping-bag"></i> Ürünleri Yönet (Demo)</a>
+                        <a href="#" class="btn btn-danger admin-btn" onclick="loadContentPanel('blog'); return false;"><i class="fa fa-pencil"></i> Blog Düzenle (Demo)</a>
+                        
+                        <a href="#" class="btn btn-danger admin-btn" onclick="loadOrdersPanel(); return false;"><i class="fa fa-truck"></i> Bekleyen Sipariş (${pendingCount})</a>
+                        <a href="#" class="btn btn-danger admin-btn"><i class="fa fa-users"></i> Kullanıcılar</a>
+                        <a href="#" class="btn btn-danger admin-btn"><i class="fa fa-cogs"></i> Site Ayarları</a>
+                        <a href="#" class="btn btn-default admin-btn" onclick="window.location.reload();">Çıkış Yap</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+function loadProductsPanel() {
+    const productsHtml = getProductsPanelHtml();
+    
+    $('body > section').hide();
+$('body > section').not('#header, #menu, #top').hide();    
+    $('#adminPanel').html(productsHtml).show(); 
+}
+
+function loadContentPanel(type) {
+    const panelTitle = (type === 'blog' ? 'Blog Yazıları' : 'Genel İçerikler');
+    const content = `
+        <section id="admin-content" class="container" style="padding: 60px 0;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="mgt" style="color: #ea1c26;"><i class="fa fa-pencil"></i> ${panelTitle} Yönetimi</h2>
+                    <hr style="border-color: #ea1c26;">
+                    <a href="#" class="btn btn-default admin-btn" onclick="loadAdminPanel(); return false;" style="margin-bottom: 20px;"><i class="fa fa-arrow-left"></i> Panele Dön</a>
+                    
+                    
+                    <div style="margin-top: 30px;">
+                        <div class="stat-card" style="text-align: left;">
+                           <h5>Ana Sayfa Slayt Başlığı: "LAgv Pista GP RR Carbon Kapalı Kask" <button class="btn btn-info btn-sm pull-right"><i class="fa fa-edit"></i> Düzenle</button></h5>
+                        </div>
+                         <div class="stat-card" style="text-align: left;">
+                           <h5>Blog Yazısı: "ABS Teknolojisi: Motosikletlerde ABS Fren..." <button class="btn btn-info btn-sm pull-right"><i class="fa fa-edit"></i> Düzenle</button></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+    $('body > section').not('#top, #header, #menu, #footer').hide(); 
+    $('#adminPanel').html(content).show();
+}
+
+function getOrdersPanelHtml() {
+    let ordersHtml = DUMMY_ORDERS.map(order => `
+        <tr>
+            <td data-label="ID">#${order.id}</td>
+            <td data-label="Ürün">${order.product} (x${order.quantity})</td>
+            <td data-label="Müşteri">${order.customer}</td>
+            <td data-label="Tutar">${order.total}</td>
+            <td data-label="Tarih">${order.date}</td>
+            <td data-label="Durum"><span class="status-badge status-${order.status.toLowerCase().replace(/\s/g, '-')}">${order.status}</span></td>
+            <td data-label="Aksiyon">
+                ${order.status === 'Beklemede' ? 
+                    `<button class="btn btn-success btn-sm" onclick="approveOrder('${order.id}');"><i class="fa fa-check"></i> Onayla</button>
+                     <button class="btn btn-danger btn-sm" onclick="cancelOrder('${order.id}');"><i class="fa fa-times"></i> İptal</button>`
+                    : 
+                    `<button class="btn btn-danger btn-sm disabled">${order.status}</button>`
+                }
+            </td>
+        </tr>
+    `).join('');
+
+    return `
+        <section id="admin-orders" class="container" style="padding: 60px 0;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="mgt" style="color: #ea1c26;"><i class="fa fa-truck"></i> Bekleyen Siparişler</h2>
+                    <hr style="border-color: #ea1c26;">
+                    <a href="#" class="btn btn-default admin-btn" onclick="loadAdminPanel(); return false;" style="margin-bottom: 20px;"><i class="fa fa-arrow-left"></i> Panele Dön</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped order-table">
+                            <thead>
+                                <tr>
+                                    <th>Sipariş ID</th>
+                                    <th>Ürün/Miktar</th>
+                                    <th>Müşteri</th>
+                                    <th>Tutar</th>
+                                    <th>Tarih</th>
+                                    <th>Durum</th>
+                                    <th>Aksiyon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${ordersHtml}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+function loadOrdersPanel() {
+    const ordersHtml = getOrdersPanelHtml();
+    
+    $('body > section').not('#top, #header, #menu, #footer').hide(); 
+    $('#adminPanel').html(ordersHtml).show(); 
+}
+
+function getProductsPanelHtml() {
+    let productRows = DEMO_PRODUCTS.map(product => `
+        <tr>
+            <td data-label="ID">#${product.id}</td>
+            <td data-label="Görsel"><img src="${product.image}" style="width: 50px; height: 50px; object-fit: cover;"></td>
+            <td data-label="Ad">${product.name}</td>
+            <td data-label="Fiyat">${product.price}</td>
+            <td data-label="Aksiyon">
+                <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Düzenle</button>
+                <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Sil</button>
+            </td>
+        </tr>
+    `).join('');
+
+    return `
+        <section id="admin-products" class="container" style="padding: 60px 0;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="mgt" style="color: #ea1c26;"><i class="fa fa-shopping-bag"></i> Ürün Yönetimi (CMS Mantığı)</h2>
+                    <hr style="border-color: #ea1c26;">
+                    <a href="#" class="btn btn-default admin-btn" onclick="loadAdminPanel(); return false;" style="margin-bottom: 20px;"><i class="fa fa-arrow-left"></i> Panele Dön</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 style="margin-top: 0;">Yeni Gelen Ürünler Listesi</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped order-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Görsel</th>
+                                    <th>Ürün Adı</th>
+                                    <th>Fiyat</th>
+                                    <th>Aksiyon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${productRows}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+             <div class="row" style="margin-top: 30px;">
+                <div class="col-sm-12">
+                    
+                    
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+function loadContentPanel(type) {
+    const panelTitle = (type === 'blog' ? 'Blog Yazıları' : 'Genel İçerikler');
+    const content = `
+        <section id="admin-content" class="container" style="padding: 60px 0;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="mgt" style="color: #ea1c26;"><i class="fa fa-pencil"></i> ${panelTitle} Yönetimi</h2>
+                    <hr style="border-color: #ea1c26;">
+                    <a href="#" class="btn btn-default admin-btn" onclick="loadAdminPanel(); return false;" style="margin-bottom: 20px;"><i class="fa fa-arrow-left"></i> Panele Dön</a>
+                    
+                   
+                    
+                    <div style="margin-top: 30px;">
+                        <div class="stat-card" style="text-align: left;">
+                           <h5>Ana Sayfa Slayt Başlığı: "LAgv Pista GP RR Carbon Kapalı Kask" <button class="btn btn-info btn-sm pull-right"><i class="fa fa-edit"></i> Düzenle</button></h5>
+                        </div>
+                         <div class="stat-card" style="text-align: left;">
+                           <h5>Blog Yazısı: "ABS Teknolojisi: Motosikletlerde ABS Fren..." <button class="btn btn-info btn-sm pull-right"><i class="fa fa-edit"></i> Düzenle</button></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+    $('body > section').not('#top, #header, #menu, #footer').hide(); 
+    $('#adminPanel').html(content).show();
+}
+
+function loadAdminPanel() {
+    const adminHtml = getAdminPanelHtml();
+    
+    $('body > section').not('#top, #header, #menu').hide(); 
+    
+    $('#adminPanel').html(adminHtml).show(); 
+    
+    $('#usernameInput').val('');
+    $('#passwordInput').val('');
+}
+
+
+
+
+$(document).ready(function() {
+    
+    const ADMIN_USER = "bekir";
+    const ADMIN_PASS = "123"; 
+
+    $('#loginForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        const username = $('#usernameInput').val();
+        const password = $('#passwordInput').val();
+        const $message = $('#loginMessage');
+        
+        $message.hide().removeClass('alert-success alert-danger');
+
+        if (username === ADMIN_USER && password === ADMIN_PASS) {
+            $('#loginModal').modal('hide');
+            loadAdminPanel();
+            
+        } else {
+            $message.text('Hatalı kullanıcı adı veya şifre. Lütfen tekrar deneyin.').addClass('alert-danger').show();
+            setTimeout(function() { $message.hide(); }, 3000); 
+        }
+    });
+
+    var secondaryNav = $('.cd-secondary-nav'),
+        secondaryNavTopPosition = secondaryNav.length ? secondaryNav.offset().top : 0;
+
+    $(window).on('scroll', function(){
+        if($(window).scrollTop() > secondaryNavTopPosition ) {
+            secondaryNav.addClass('is-fixed'); 
+        } else {
+            secondaryNav.removeClass('is-fixed');
+        }
+    }); 
+});
+</script>
