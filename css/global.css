@@ -425,6 +425,15 @@ ul.social-network li {
 	display: inline-block;
 	margin: 0 2px;
 }
+.announcements-main-content .col-sm-4,
+.announcements-main-content .col-sm-8 {
+    float: left;
+}
+
+.announcements-main-content {
+    /* İçindeki float'ları temizlemek için */
+    overflow: hidden; 
+}
 
 
 .social-network a.icoRss:hover {
