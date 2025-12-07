@@ -380,6 +380,31 @@
     </div>
 </section>
 
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #f8f8f8; border-bottom: 1px solid #eee;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="contactModalLabel" style="margin: 0; font-weight: bold;">Mesaj Önizleme ve Onay</h4>
+            </div>
+            <div class="modal-body" style="padding: 20px;">
+                <p>Lütfen bilgilerinizi kontrol edip onaylayın:</p>
+                <div style="margin-top: 15px; padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
+                    <p><strong>İsim:</strong> <span id="modalName"></span></p>
+                    <p><strong>E-posta:</strong> <span id="modalEmail"></span></p>
+                    <p><strong>Telefon:</strong> <span id="modalPhone"></span></p>
+                    <p><strong>Konu:</strong> <span id="modalSubject"></span></p>
+                    <p style="margin-top: 10px;"><strong>Mesaj:</strong> <span id="modalMessage"></span></p>
+                </div>
+            </div>
+            <div class="modal-footer" style="text-align: right; border-top: 1px solid #eee;">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #bbb; color: white;">Vazgeç</button>
+                <button type="button" class="btn btn-primary" id="sendConfirm" style="background-color: #f7a400; border-color: #f7a400;">Onayla ve Gönder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 $(document).ready(function(){
     var secondaryNav = $('.cd-secondary-nav'),
@@ -391,6 +416,42 @@ $(document).ready(function(){
                 secondaryNav.removeClass('is-fixed');
             }
         }); 
+
+        var nameInput = $('#contact input[type="text"]').eq(0);
+var subjectInput = $('#contact input[type="text"]').eq(1);
+var emailInput = $('#contact input[type="text"]').eq(2);
+var phoneInput = $('#contact input[type="text"]').eq(3);
+var messageTextarea = $('#contact textarea');
+var sendButton = $('#contact .button'); 
+sendButton.on('click', function(e) {
+    e.preventDefault(); 
+
+    if (!nameInput.val() || !subjectInput.val() || !emailInput.val() || !phoneInput.val() || !messageTextarea.val()) {
+        alert("Lütfen tüm zorunlu (*) alanları doldurun.");
+        return;
+    }
+
+    $('#modalName').text(nameInput.val());
+    $('#modalEmail').text(emailInput.val());
+    $('#modalPhone').text(phoneInput.val());
+    $('#modalSubject').text(subjectInput.val());
+    $('#modalMessage').text(messageTextarea.val());
+
+    $('#contactModal').modal('show');
+});
+
+$('#sendConfirm').on('click', function() {
+
+    $('#contactModal').modal('hide');
+
+    alert('Mesajınız başarıyla gönderildi! Kısa süre içinde size geri dönüş yapılacaktır.');
+
+    nameInput.val('');
+    subjectInput.val('');
+    emailInput.val('');
+    phoneInput.val('');
+    messageTextarea.val('');
+});
         
 });
 </script>
