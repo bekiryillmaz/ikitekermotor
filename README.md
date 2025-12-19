@@ -1,39 +1,62 @@
-# İki Teker Motor
+# İki Teker Motor Web Tabanlı E-Ticaret Uygulaması
 
-İki Teker Motor, motosiklet ekipmanları ve ileri sürüş eğitimlerinin tanıtım ve satışına yönelik geliştirilmiş,
-çok sayfalı ve responsive bir e-ticaret web uygulamasıdır.
+Bu çalışma, motosiklet ekipmanları ve ileri sürüş eğitimlerinin çevrim içi olarak
+tanıtım ve satışının yapılabilmesini amaçlayan, çok sayfalı ve responsive bir
+e-ticaret web uygulamasıdır.
 
-Canlı Site: https://ikitekermotor.vercel.app/  
-GitHub: https://github.com/bekiryillmaz/ikiteker-motor
+Proje, hazır bir e-ticaret şablonu temel alınarak geliştirilmiş ve HTML5, CSS3,
+Bootstrap ve JavaScript teknolojileri kullanılarak özgünleştirilmiştir.
 
----
-
-## Proje Tanımı
-
-Bu proje, “Spare Parts E-Commerce Website Template” temel alınarak geliştirilmiştir.
-Şablon üzerinde gerekli düzenlemeler ve özelleştirmeler yapılarak motosiklet ekipmanları
-konseptine uygun bir web sitesi oluşturulmuştur.
-
-Uygulama, HTML5, CSS3, Bootstrap ve JavaScript teknolojileri kullanılarak geliştirilmiş
-olup masaüstü ve mobil cihazlarla uyumlu olacak şekilde tasarlanmıştır.
+Canlı Uygulama: https://ikitekermotor.vercel.app/  
+GitHub Deposu: https://github.com/bekiryillmaz/ikiteker-motor
 
 ---
 
-## Özellikler
+## 1. Projenin Amacı
 
-- Çok seviyeli menü yapısı
-- Kategori bazlı ürün listeleme
-- Sepet ve ödeme sayfaları
-- İstek listesi (favoriler) sistemi
-- Blog sayfası
-- Hizmetler ve eğitim tanıtım sayfaları
-- İletişim formu
-- Yönetici (admin) paneli
-- Hakkımızda sayfasında bar chart kullanımı
+Bu projenin amacı, motosiklet kullanıcılarının ihtiyaç duyduğu ekipmanları
+(mont, kask, eldiven, bot vb.) ve ileri sürüş eğitimlerini kullanıcı dostu bir
+arayüz üzerinden sunmaktır.
+
+Ayrıca site yöneticisinin ürünleri, blog içeriklerini ve siparişleri
+kontrol edebilmesini sağlayan bir yönetim paneli ile sistemin sürdürülebilir,
+geliştirilebilir ve yönetilebilir olması hedeflenmiştir.
 
 ---
 
-## Menü Yapısı
+## 2. Kullanılan Teknolojiler
+
+Projenin geliştirilmesinde aşağıdaki teknolojiler kullanılmıştır:
+
+- HTML5  
+- CSS3  
+- JavaScript  
+- Bootstrap  
+- Chart.js  
+
+Uygulama tamamen frontend tabanlıdır ve herhangi bir backend servisi
+kullanmadan çalışmaktadır.
+
+---
+
+## 3. Sistem Mimarisi
+
+Web uygulaması statik bir mimariye sahiptir. Tüm sayfalar HTML dosyaları
+üzerinden oluşturulmuş, tasarım ve responsive yapı CSS ve Bootstrap ile
+sağlanmıştır.
+
+Dinamik işlemler JavaScript aracılığıyla gerçekleştirilmiştir.
+Sepet ve istek listesi gibi kullanıcıya özel veriler tarayıcı tabanlı
+localStorage yapısı kullanılarak yönetilmektedir.
+
+---
+
+## 4. Navigasyon ve Menü Yapısı
+
+Kullanıcıların site içerisinde rahatça gezinebilmesi için çok seviyeli bir
+menü yapısı tasarlanmıştır.
+
+Ana menü başlıkları aşağıdaki gibidir:
 
 - Anasayfa  
 - Ürünler  
@@ -56,15 +79,83 @@ olup masaüstü ve mobil cihazlarla uyumlu olacak şekilde tasarlanmıştır.
 
 ---
 
-## Kullanılan Teknolojiler
+## 5. Uygulama Detayları
 
-- HTML5  
-- CSS3  
-- JavaScript  
-- Bootstrap  
-- Chart.js  
+### 5.1 Ürün Listeleme Sistemi
+Ürünler kategori bazlı olarak ayrılmış ve her kategori için özel HTML sayfaları
+oluşturulmuştur. Ürün kartları standart bir yapı ile listelenmektedir.
+
+### 5.2 Sepet Sistemi
+Kullanıcılar ürünleri sepete ekleyebilmekte ve sepetten çıkarabilmektedir.
+Sepet bilgileri localStorage üzerinde saklanarak sayfa yenilendiğinde
+verilerin kaybolması engellenmiştir.
+
+### 5.3 İstek Listesi (Favoriler)
+Kullanıcıların ilgilendikleri ürünleri kaydedebilmeleri için bir istek listesi
+modülü geliştirilmiştir. Aynı ürünün tekrar eklenmesi engellenmiştir.
+
+### 5.4 Görsel Bileşenler
+- Slider ve otomatik kayan alanlar
+- Marka logoları için slider
+- Hakkımızda sayfasında satış verilerinin görselleştirilmesi amacıyla
+  bar chart (Chart.js) kullanımı
+- Yaklaşık 100 adet optimize edilmiş görsel
 
 ---
+
+## 6. Yönetici (Admin) Paneli
+
+Sistemde site yöneticileri için bir admin paneli tasarlanmıştır.
+Panele erişim login modal aracılığıyla sağlanmaktadır.
+
+Admin panel özellikleri:
+- Blog içeriklerini düzenleme
+- Bekleyen siparişleri görüntüleme
+- Ürün ve stok yönetimi işlemleri
+
+---
+
+## 7. Proje Yapısı
+
+Proje aşağıdaki dosya yapısına sahiptir:
+
+```text
+ikiteker-motor/
+│
+├── index.html
+├── blog.html
+├── hakkimizda.html
+├── iletisim.html
+├── sepet.html
+├── odeme.html
+├── wishlist.html
+│
+├── urunler/
+│   ├── tum-urunler.html
+│   ├── montlar.html
+│   ├── eldivenler.html
+│   ├── botlar.html
+│   └── kasklar.html
+│
+├── hizmetler/
+│   ├── tum-hizmetler.html
+│   ├── ileri-surus.html
+│   ├── hakimiyet.html
+│   └── pist-egitimi.html
+│
+├── css/
+│   ├── global.css
+│   └── diğer stil dosyaları
+│
+├── js/
+│   ├── cart.js
+│   ├── wishlist.js
+│   ├── slider.js
+│   └── main.js
+│
+└── images/
+    └── siteye ait görseller
+
 
 ## Proje Yapısı
 
