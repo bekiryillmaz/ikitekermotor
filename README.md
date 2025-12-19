@@ -157,7 +157,7 @@ ikiteker-motor/
     └── siteye ait görseller
 
 
-## Proje Yapısı
+
 
 - 42 adet HTML sayfası
 - 13 adet CSS dosyası
